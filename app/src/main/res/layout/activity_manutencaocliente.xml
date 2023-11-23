@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:fillViewport="true">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradiente_color"
+    tools:context=".ManutençãoCliente">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="409dp"
+        android:layout_height="818dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="104dp"
+            android:layout_height="105dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginBottom="677dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/frimmel_transparente" />
+
+        <TextView
+            android:id="@+id/textFrimmelMC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="65dp"
+            android:layout_marginEnd="142dp"
+            android:fontFamily="@font/itim"
+            android:text="Frimmel"
+            android:textAllCaps="true"
+            android:textColor="#5A6B59"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/editHorario"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/editHorario"
+            android:layout_width="306dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="49dp"
+            android:layout_marginEnd="54dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/background_corner"
+            android:ems="10"
+            android:fontFamily="@font/itim"
+            android:hint="Horário"
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#1A8414"
+            android:textColorHint="#AD1A8414"
+            android:textSize="35dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/editDia"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/editDia"
+            android:layout_width="306dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="49dp"
+            android:layout_marginEnd="54dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/background_corner"
+            android:ems="10"
+            android:fontFamily="@font/itim"
+            android:hint="Dia"
+            android:inputType="date"
+            android:textAlignment="center"
+            android:textColor="#1A8414"
+            android:textColorHint="#AD1A8414"
+            android:textSize="35dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/ViewEndereço"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/ViewEndereço"
+            android:layout_width="382dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="11dp"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/background_corner"
+            android:fontFamily="@font/itim"
+            android:text="Endereço"
+            android:paddingVertical="10dp"
+            android:textAlignment="center"
+            android:textColor="#1A8414"
+            android:textColorHint="#1A8414"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="78dp"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/itim"
+            android:text="Motivo da Manutenção:"
+            android:textColor="#5A6B59"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/editTextTextMultiLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextTextMultiLine"
+            android:layout_width="363dp"
+            android:layout_height="233dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="93dp"
+            android:background="@drawable/background_corner"
+            android:ems="10"
+            android:fontFamily="@font/itim"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:textAlignment="viewStart"
+            android:textColor="#1A8414"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/ConfirmarAgenda"
+            android:layout_width="130dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="748dp"
+            android:layout_marginBottom="12dp"
+            android:backgroundTint="#B8D4B6"
+            android:fontFamily="@font/itim"
+            android:text="Confirmar"
+            android:textColor="#2A9F88"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:cornerRadius="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/CancelarAgenda"
+            android:layout_width="130dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="748dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#B8D4B6"
+            android:fontFamily="@font/itim"
+            android:text="Cancelar"
+            android:textColor="#D43535"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:cornerRadius="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.528"
+            app:layout_constraintStart_toEndOf="@+id/ConfirmarAgenda"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
+    </ScrollView>

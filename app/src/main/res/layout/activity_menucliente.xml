@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradiente_color"
+    tools:context=".MenuCliente">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="104dp"
+            android:layout_height="105dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="592dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/frimmel_transparente" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="407dp"
+            android:layout_height="464dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="108dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/Boletos"
+                android:layout_width="355dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="97dp"
+                android:layout_marginEnd="26dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="#B8D4B6"
+                android:fontFamily="@font/itim"
+                android:text="2°Via de Boletos"
+                android:textColor="#1A8414"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:cornerRadius="20dp"
+                app:layout_constraintBottom_toTopOf="@+id/ManutençãoCliente"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <Button
+                android:id="@+id/ManutençãoCliente"
+                android:layout_width="355dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginEnd="26dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="#B8D4B6"
+                android:fontFamily="@font/itim"
+                android:text="Agenda de Manutenção"
+                android:textColor="#1A8414"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:cornerRadius="20dp"
+                app:layout_constraintBottom_toTopOf="@+id/DadosCliente"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/DadosCliente"
+                android:layout_width="355dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginEnd="26dp"
+                android:layout_marginBottom="88dp"
+                android:backgroundTint="#B8D4B6"
+                android:fontFamily="@font/itim"
+                android:text="Dados do Usuário"
+                android:textColor="#1A8414"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:cornerRadius="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/textFrimmelMC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="68dp"
+            android:layout_marginEnd="141dp"
+            android:fontFamily="@font/itim"
+            android:text="Frimmel"
+            android:textAllCaps="true"
+            android:textColor="#5A6B59"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

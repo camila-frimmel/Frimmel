@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1047741633320",
+    "firebase_url": "https://appfrimmel-default-rtdb.firebaseio.com",
+    "project_id": "appfrimmel",
+    "storage_bucket": "appfrimmel.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1047741633320:android:e25b9da3d47b201d3df61d",
+        "android_client_info": {
+          "package_name": "com.internet.frimmel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1047741633320-rh7244aeb3h187lf3g3trab0tb0ll88v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyvv1Dsr6ztiAdxHc9cidQw6UDgwksRAU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1047741633320-rh7244aeb3h187lf3g3trab0tb0ll88v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

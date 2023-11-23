@@ -1,0 +1,86 @@
+<!-- res/layout/popup_layout.xml -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/gradiente_color"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:android=".PopupCad">
+
+    <!-- Conteúdo do pop-up aqui -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="409dp"
+        android:layout_height="283dp"
+        android:backgroundTint="#98FF96"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/VoltarCad"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="135dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="88dp"
+            android:backgroundTint="#B8D4B6"
+            android:fontFamily="@font/itim"
+            android:text="Voltar"
+            android:textColor="#D43535"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:cornerRadius="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/CancelaCad"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="135dp"
+            android:layout_marginBottom="88dp"
+            android:backgroundTint="#B8D4B6"
+            android:fontFamily="@font/itim"
+            android:text="Confirmar"
+            android:textColor="#2A9F88"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:cornerRadius="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/VoltarCad"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textTexto"
+            android:layout_width="327dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="42dp"
+            android:layout_marginBottom="200dp"
+            android:fontFamily="@font/itim"
+            android:text="Tem certeza que quer cancelar o cadastro?"
+            android:textAlignment="center"
+            android:textColor="#5A6B59"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

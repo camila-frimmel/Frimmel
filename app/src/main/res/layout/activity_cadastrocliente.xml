@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:fillViewport="true">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradiente_color"
+    android:orientation="vertical"
+    app:layout_constraintCircleRadius="20dp"
+    tools:context=".CadastroCliente">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="409dp"
+            android:layout_height="1300dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="104dp"
+                android:layout_height="105dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/textCadastroCliente"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.556"
+                app:srcCompat="@drawable/frimmel_transparente" />
+
+            <TextView
+                android:id="@+id/textFrimmelC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/itim"
+                android:text="Frimmel"
+                android:textAllCaps="true"
+                android:textColor="#5A6B59"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/textCadastroCliente"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.134"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.566" />
+
+
+            <!-- Defina o texto desejado aqui -->
+
+
+            <EditText
+                android:id="@+id/CadastroCPF"
+                android:layout_width="306dp"
+                android:layout_height="62dp"
+                android:layout_marginStart="51dp"
+                android:layout_marginEnd="52dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/background_corner"
+                android:drawableLeft="@drawable/baseline_feed_24"
+                android:drawablePadding="6dp"
+                android:ems="10"
+                android:fontFamily="@font/itim"
+                android:hint="CPF / CNPJ"
+                android:inputType="text"
+                android:textColor="#1A8414"
+                android:textColorHint="#1A8414"
+                android:textIsSelectable="false"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:circularflow_radiusInDP="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/CadastroEmail"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/CadastroTelefone"
+                android:layout_width="306dp"
+                android:layout_height="62dp"
+                android:layout_marginStart="51dp"
+                android:layout_marginEnd="52dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/background_corner"
+                android:drawableLeft="@drawable/baseline_phone_24"
+                android:drawablePadding="6dp"
+                android:ems="10"
+                android:fontFamily="@font/itim"
+                android:hint="Telefone"
+                android:inputType="text"
+                android:textColor="#1A8414"
+                android:textColorHint="#1A8414"
+                android:textIsSelectable="false"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:circularflow_radiusInDP="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/CadastroCEP"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/CadastroEmail"
+                android:layout_width="306dp"
+                android:layout_height="62dp"
+                android:layout_marginStart="51dp"
+                android:layout_marginEnd="52dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/background_corner"
+                android:drawableLeft="@drawable/baseline_email_24"
+                android:drawablePadding="6dp"
+                android:ems="10"
+                android:fontFamily="@font/itim"
+                android:hint="E-mail"
+                android:inputType="text"
+                android:textColor="#1A8414"
+                android:textColorHint="#1A8414"
+                android:textIsSelectable="false"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:circularflow_radiusInDP="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/CadastroTelefone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/CadastroNome"
+                android:layout_width="306dp"
+                android:layout_height="62dp"
+                android:layout_marginStart="51dp"
+                android:layout_marginEnd="52dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/background_corner"
+                android:drawableLeft="@drawable/baseline_person_24"
+                android:drawablePadding="6dp"
+                android:ems="10"
+                android:fontFamily="@font/itim"
+                android:hint="Nome / Razão"
+                android:inputType="text"
+                android:textColor="#1A8414"
+                android:textColorHint="#1A8414"
+                android:textIsSelectable="false"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:circularflow_radiusInDP="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/CadastroCPF"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textCadastroCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                android:fontFamily="@font/itim"
+                android:text="Cadastro do Cliente"
+                android:textColor="#5A6B59"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/CadastroNome"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/CadastroCEP"
+                android:layout_width="306dp"
+                android:layout_height="62dp"
+                android:layout_marginStart="51dp"
+                android:layout_marginEnd="52dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/background_corner"
+                android:drawableLeft="@drawable/baseline_map_24"
+                android:drawablePadding="6dp"
+                android:ems="10"
+                android:hint="CEP"
+                android:inputType="text"
+                android:textColor="#1A8414"
+                android:textColorHint="#1A8414"
+                android:textIsSelectable="false"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:circularflow_radiusInDP="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/CadastroEndereço"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/CadastroEndereço"
+                android:layout_width="306dp"
+                android:layout_height="62dp"
+                android:layout_marginStart="51dp"
+                android:layout_marginEnd="52dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/background_corner"
+                android:drawableLeft="@drawable/baseline_pin_drop_24"
+                android:drawablePadding="6dp"
+                android:ems="10"
+                android:fontFamily="@font/itim"
+                android:hint="Endereço"
+                android:inputType="text"
+                android:textColor="#1A8414"
+                android:textColorHint="#1A8414"
+                android:textIsSelectable="false"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:circularflow_radiusInDP="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/CadastroPlano"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <EditText
+                android:id="@+id/CadastroSenha"
+                android:layout_width="306dp"
+                android:layout_height="62dp"
+                android:layout_marginStart="51dp"
+                android:layout_marginEnd="52dp"
+                android:layout_marginBottom="144dp"
+                android:background="@drawable/background_corner"
+                android:drawableLeft="@drawable/baseline_lock_24"
+                android:drawablePadding="6dp"
+                android:ems="10"
+                android:fontFamily="@font/itim"
+                android:hint="Senha"
+                android:inputType="textPassword"
+                android:textColor="#1A8414"
+                android:textColorHint="#1A8414"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/RemoveCliente"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/ConfirmarCadastro"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginStart="51dp"
+                android:layout_marginTop="1109dp"
+                android:layout_marginBottom="131dp"
+                android:backgroundTint="#B8D4B6"
+                android:fontFamily="@font/itim"
+                android:text="Confirmar"
+                android:textColor="#2A9F88"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:cornerRadius="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/CancelarCadastro"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                android:id="@+id/CancelarCadastro"
+                android:layout_width="130dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="1109dp"
+                android:layout_marginEnd="52dp"
+                android:layout_marginBottom="131dp"
+                android:backgroundTint="#B8D4B6"
+                android:fontFamily="@font/itim"
+                android:text="Cancelar"
+                android:textColor="#D43535"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:cornerRadius="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Spinner
+                android:id="@+id/CadastroPlano"
+                android:layout_width="306dp"
+                android:layout_height="62dp"
+                android:layout_marginStart="52dp"
+                android:layout_marginEnd="51dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/background_corner"
+                android:fontFamily="@font/itim"
+                android:paddingHorizontal="6dp"
+                app:layout_constraintBottom_toTopOf="@+id/CadastroMegas"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Spinner
+                android:id="@+id/CadastroMegas"
+                android:layout_width="306dp"
+                android:layout_height="62dp"
+                android:layout_marginStart="51dp"
+                android:layout_marginEnd="52dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/background_corner"
+                android:fontFamily="@font/itim"
+                android:paddingHorizontal="6dp"
+                app:layout_constraintBottom_toTopOf="@+id/CadastroMensal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Spinner
+                android:id="@+id/CadastroMensal"
+                android:layout_width="306dp"
+                android:layout_height="62dp"
+                android:layout_marginStart="51dp"
+                android:layout_marginEnd="52dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/background_corner"
+                android:fontFamily="@font/itim"
+                android:paddingHorizontal="6dp"
+                app:layout_constraintBottom_toTopOf="@+id/CadastroSenha"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/RemoveCliente"
+                android:layout_width="200dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="104dp"
+                android:layout_marginEnd="105dp"
+                android:layout_marginBottom="35dp"
+                android:backgroundTint="#B8D4B6"
+                android:fontFamily="@font/itim"
+                android:text="Remover Cliente"
+                android:textColor="#1A8414"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:cornerRadius="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
+</ScrollView>
