@@ -18,8 +18,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatSpinner;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
@@ -235,6 +237,7 @@ public class CadastroCliente extends AppCompatActivity {
         dados.put("Plano", plano);
         dados.put("Megas", megas);
         dados.put("Mensalidade", mensalidade);
+        dados.put("ativo",true);
 
         db.collection("cliente")
                 .document(email)
@@ -291,5 +294,22 @@ public class CadastroCliente extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(this, "Erro ao criar o PDF", Toast.LENGTH_SHORT).show();
         }
+    }
+    private void ativarContaNoFirebase(String email) {
+        // Substitua "cliente" pelo seu nome de coleção
+        DocumentReference userRef = FirebaseFirestore.getInstance().collection("cliente").document(email);
+
+        userRef.update("ativo", true)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(CadastroCliente.this, "Conta ativada no Firestore", Toast.LENGTH_SHORT).show();
+                            // Realize outras ações necessárias após ativar a conta
+                        } else {
+                            Toast.makeText(CadastroCliente.this, "Erro ao ativar conta no Firestore: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 }

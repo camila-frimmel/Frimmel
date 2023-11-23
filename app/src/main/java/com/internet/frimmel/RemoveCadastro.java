@@ -11,9 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.SignInMethodQueryResult;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 public class RemoveCadastro extends AppCompatActivity {
@@ -33,14 +34,12 @@ public class RemoveCadastro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("RemoveCadastro", "Botão ConfirmaRemove clicado");
-                excluirUsuario(v);
+                desativarContaEExcluirUsuario();
             }
         });
-
-        // Restante do seu código...
     }
 
-    public void excluirUsuario(View view) {
+    private void desativarContaEExcluirUsuario() {
         String email = editTextEmail.getText().toString();
 
         // Verificar se o campo de e-mail está vazio
@@ -58,62 +57,33 @@ public class RemoveCadastro extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                // Documento encontrado, obtenha o ID do documento
-                                String userId = document.getId();
+                        if (task.isSuccessful() && !task.getResult().isEmpty()) {
+                            // Documento encontrado, obtenha o ID do documento
+                            String userId = task.getResult().getDocuments().get(0).getId();
 
-                                // Excluir o documento
-                                usersCollection.document(userId).delete()
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> deleteTask) {
-                                                if (deleteTask.isSuccessful()) {
-                                                    // Documento excluído com sucesso, agora você pode desativar a conta do usuário se necessário
-                                                    desativarContaUsuario(email);
-                                                } else {
-                                                    Toast.makeText(RemoveCadastro.this, "Erro ao excluir usuário.", Toast.LENGTH_SHORT).show();
-                                                }
-                                            }
-                                        });
-                            }
+                            // Desativar a conta do usuário
+                            desativarContaNoFirestore(userId);
                         } else {
-                            Toast.makeText(RemoveCadastro.this, "Erro ao procurar usuário.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RemoveCadastro.this, "Conta não encontrada no Firestore.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
 
-    private void desativarContaUsuario(String email) {
-        // Obter uma referência à coleção "cliente"
+    // Função para desativar uma conta no Firestore
+    private void desativarContaNoFirestore(String userId) {
+        // Substitua "cliente" pelo seu nome de coleção
         CollectionReference usersCollection = FirebaseFirestore.getInstance().collection("cliente");
 
-        // Procurar o documento com o e-mail fornecido
-        usersCollection.whereEqualTo("email", email)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        usersCollection.document(userId).update("ativo", false)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                // Documento encontrado, obtenha o ID do documento
-                                String userId = document.getId();
-
-                                // Atualizar o campo "ativo" para falso
-                                usersCollection.document(userId).update("ativo", false)
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> updateTask) {
-                                                if (updateTask.isSuccessful()) {
-                                                    Toast.makeText(RemoveCadastro.this, "Usuário excluído e conta desativada com sucesso.", Toast.LENGTH_SHORT).show();
-                                                } else {
-                                                    Toast.makeText(RemoveCadastro.this, "Erro ao desativar conta de usuário.", Toast.LENGTH_SHORT).show();
-                                                }
-                                            }
-                                        });
-                            }
+                            // Conta desativada com sucesso no Firestore
+                            Toast.makeText(RemoveCadastro.this, "Conta desativada com sucesso.", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(RemoveCadastro.this, "Erro ao desativar conta de usuário.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RemoveCadastro.this, "Erro ao desativar conta no Firestore: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
