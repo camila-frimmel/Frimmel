@@ -34,12 +34,17 @@ public class RemoveCadastro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("RemoveCadastro", "Botão ConfirmaRemove clicado");
-                desativarContaEExcluirUsuario();
+                exibirPopupConfirmacao();
             }
         });
     }
 
-    private void desativarContaEExcluirUsuario() {
+    private void exibirPopupConfirmacao() {
+        PopRemove popupDialog = new PopRemove();
+        popupDialog.show(getSupportFragmentManager(), "popup_dialog");
+    }
+
+    public void desativarContaEExcluirUsuario() {
         String email = editTextEmail.getText().toString();
 
         // Verificar se o campo de e-mail está vazio
