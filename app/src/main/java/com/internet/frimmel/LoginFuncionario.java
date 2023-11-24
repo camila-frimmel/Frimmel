@@ -19,6 +19,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.internet.frimmel.databinding.ActivityLogclienteBinding;
 import com.internet.frimmel.databinding.ActivityLogfuncionarioBinding;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class LoginFuncionario extends AppCompatActivity {
 
     private ActivityLogfuncionarioBinding binding;
@@ -83,33 +86,44 @@ public class LoginFuncionario extends AppCompatActivity {
     }
 
     private void checkAccountStatus(String email) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        // Lista de e-mails autorizados
+        List<String> emailsAutorizados = Arrays.asList("ale.cco2002@gmail.com", "camilafrimmel02@gmail.com");
 
-        db.collection("cliente")
-                .whereEqualTo("email", email)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                boolean ativo = document.getBoolean("ativo");
-                                if (ativo) {
-                                    // A conta está ativa, permitir acesso ao aplicativo
-                                    startActivity(new Intent(LoginFuncionario.this, MenuFuncionario.class));
-                                    finish();
-                                } else {
-                                    // A conta está desativada, impedir acesso ao aplicativo
-                                    FirebaseAuth.getInstance().signOut(); // Deslogar usuário
-                                    Toast.makeText(LoginFuncionario.this, "Esta conta está desativada.", Toast.LENGTH_SHORT).show();
+        if (emailsAutorizados.contains(email)) {
+            // O e-mail está autorizado, verificar o status da conta no Firestore
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+            db.collection("cliente")
+                    .whereEqualTo("email", email)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    boolean ativo = document.getBoolean("ativo");
+                                    if (ativo) {
+                                        // A conta está ativa, permitir acesso ao aplicativo
+                                        startActivity(new Intent(LoginFuncionario.this, MenuFuncionario.class));
+                                        finish();
+                                    } else {
+                                        // A conta está desativada, impedir acesso ao aplicativo
+                                        FirebaseAuth.getInstance().signOut(); // Deslogar usuário
+                                        Toast.makeText(LoginFuncionario.this, "Esta conta está desativada.", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
+                            } else {
+                                // Tratar erro
+                                Toast.makeText(LoginFuncionario.this, "Erro ao verificar conta no Firestore.",
+                                        Toast.LENGTH_SHORT).show();
                             }
-                        } else {
-                            // Tratar erro
-                            Toast.makeText(LoginFuncionario.this, "Erro ao verificar conta no Firestore.",
-                                    Toast.LENGTH_SHORT).show();
                         }
-                    }
-                });
+                    });
+        } else {
+            // O e-mail não está autorizado
+            FirebaseAuth.getInstance().signOut(); // Deslogar usuário
+            Toast.makeText(LoginFuncionario.this, "Acesso não autorizado.", Toast.LENGTH_SHORT).show();
+        }
     }
+
 }
