@@ -96,7 +96,7 @@ public class ManutençãoCliente extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(ManutençãoCliente.this, "Salvo no banco", Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(ManutençãoCliente.this, MenuFuncionario.class);
+                        Intent intent = new Intent(ManutençãoCliente.this, MenuCliente.class);
                         startActivity(intent);
                     }
                 })

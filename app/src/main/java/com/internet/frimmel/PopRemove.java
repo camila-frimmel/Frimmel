@@ -28,11 +28,12 @@ public class PopRemove extends DialogFragment {
             }
         });
 
-        view.findViewById(R.id.CancelaRemove).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.ConfirmaRemover).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                @SuppressLint("RestrictedApi") Intent remo = new Intent(getApplicationContext(), CadastroCliente.class);
-                startActivity(remo);
+                // Agora, chamamos o método desativarContaEExcluirUsuario da atividade RemoveCadastro
+                ((RemoveCadastro) requireActivity()).desativarContaEExcluirUsuario();
+                dismiss(); // Fechar o pop-up após a ação ser concluída
             }
         });
 

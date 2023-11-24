@@ -1,76 +1,96 @@
 package com.internet.frimmel;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.SignInMethodQueryResult;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class RemoveCadastro extends AppCompatActivity {
 
-    private EditText Deletecad;
+    private EditText editTextEmail;
+    private Button btnConfirmaRemove;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_removecad);
 
-        Button removeButton = findViewById(R.id.ConfirmaRemove);
-        Deletecad = findViewById(R.id.DeleteCad);
+        editTextEmail = findViewById(R.id.DeleteCad);
+        btnConfirmaRemove = findViewById(R.id.ConfirmaRemove);
 
-        removeButton.setOnClickListener(new View.OnClickListener() {
+        btnConfirmaRemove.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                String emailParaExcluir = Deletecad.getText().toString();
-
-                FirebaseAuth auth = FirebaseAuth.getInstance();
-
-                auth.fetchSignInMethodsForEmail(emailParaExcluir)
-                        .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
-                                if (task.isSuccessful()) {
-                                    SignInMethodQueryResult result = task.getResult();
-                                    if (result != null && result.getSignInMethods() != null && result.getSignInMethods().size() > 0) {
-                                        // O e-mail está associado a uma conta, obtenha o usuário atual
-                                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-                                        // Remova o usuário
-                                        if (user != null) {
-                                            user.delete()
-                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                        @Override
-                                                        public void onComplete(@NonNull Task<Void> deleteTask) {
-                                                            if (deleteTask.isSuccessful()) {
-                                                                // Usuário excluído com sucesso
-                                                                Toast.makeText(RemoveCadastro.this, "Usuário removido com sucesso", Toast.LENGTH_SHORT).show();
-                                                            } else {
-                                                                // Houve um erro ao excluir o usuário
-                                                                Toast.makeText(RemoveCadastro.this, "Erro ao remover usuário: " + deleteTask.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                                            }
-                                                        }
-                                                    });
-                                        }
-                                    } else {
-                                        // O e-mail não está associado a uma conta
-                                        Toast.makeText(RemoveCadastro.this, "E-mail não associado a uma conta", Toast.LENGTH_SHORT).show();
-                                    }
-                                } else {
-                                    // Houve um erro ao verificar o e-mail
-                                    Toast.makeText(RemoveCadastro.this, "Erro ao verificar e-mail: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
+            public void onClick(View v) {
+                Log.d("RemoveCadastro", "Botão ConfirmaRemove clicado");
+                exibirPopupConfirmacao();
             }
         });
+    }
+
+    private void exibirPopupConfirmacao() {
+        PopRemove popupDialog = new PopRemove();
+        popupDialog.show(getSupportFragmentManager(), "popup_dialog");
+    }
+
+    public void desativarContaEExcluirUsuario() {
+        String email = editTextEmail.getText().toString();
+
+        // Verificar se o campo de e-mail está vazio
+        if (email.isEmpty()) {
+            Toast.makeText(this, "Por favor, digite o e-mail do cliente.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Obter uma referência à coleção "cliente"
+        CollectionReference usersCollection = FirebaseFirestore.getInstance().collection("cliente");
+
+        // Procurar o documento com o e-mail fornecido
+        usersCollection.whereEqualTo("email", email)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful() && !task.getResult().isEmpty()) {
+                            // Documento encontrado, obtenha o ID do documento
+                            String userId = task.getResult().getDocuments().get(0).getId();
+
+                            // Desativar a conta do usuário
+                            desativarContaNoFirestore(userId);
+                        } else {
+                            Toast.makeText(RemoveCadastro.this, "Conta não encontrada no Firestore.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    // Função para desativar uma conta no Firestore
+    private void desativarContaNoFirestore(String userId) {
+        // Substitua "cliente" pelo seu nome de coleção
+        CollectionReference usersCollection = FirebaseFirestore.getInstance().collection("cliente");
+
+        usersCollection.document(userId).update("ativo", false)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            // Conta desativada com sucesso no Firestore
+                            Toast.makeText(RemoveCadastro.this, "Conta desativada com sucesso.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(RemoveCadastro.this, "Erro ao desativar conta no Firestore: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 }
