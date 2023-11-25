@@ -2,6 +2,8 @@ package com.internet.frimmel;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -48,6 +50,24 @@ public class ManutençãoCliente extends AppCompatActivity {
         Obs = findViewById(R.id.editTextTextMultiLine);
         ViewEndereço = findViewById(R.id.ViewEndereço);
 
+        // Adiciona o TextWatcher para formatar dinamicamente a entrada de data
+        Data.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
+                // Não é necessário implementar
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+                // Não é necessário implementar
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                formatarData(editable);
+            }
+        });
+
         readDataFromCollection("cliente","email");
 
 
@@ -72,6 +92,13 @@ public class ManutençãoCliente extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void formatarData(Editable editable) {
+        // Adiciona a barra automaticamente após o segundo caractere
+        if (editable.length() == 2 && editable.charAt(1) != '/') {
+            editable.insert(2, "/");
+        }
     }
 
     private boolean validaCampos(String horario, String data, String obs) {

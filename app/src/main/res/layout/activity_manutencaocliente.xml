@@ -86,6 +86,7 @@
             android:fontFamily="@font/itim"
             android:hint="Dia"
             android:inputType="date"
+            android:digits="0123456789/"
             android:textAlignment="center"
             android:textColor="#1A8414"
             android:textColorHint="#AD1A8414"
