@@ -87,7 +87,7 @@ public class LoginFuncionario extends AppCompatActivity {
 
     private void checkAccountStatus(String email) {
         // Lista de e-mails autorizados
-        List<String> emailsAutorizados = Arrays.asList("ale.cco2002@gmail.com", "camilafrimmel02@gmail.com");
+        List<String> emailsAutorizados = Arrays.asList("ale.cco2002@gmail.com", "camilafrimmel@gmail.com");
 
         if (emailsAutorizados.contains(email)) {
             // O e-mail está autorizado, verificar o status da conta no Firestore
